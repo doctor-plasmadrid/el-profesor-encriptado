@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>El Profesor Encriptado</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Silkscreen&display=swap" rel="stylesheet">
+    
+    <style>
+      .rotate-device-warning { display: none !important; }
+      
+      body.is-mobile.is-portrait .rotate-device-warning {
+        display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100dvh;
+        background-color: #1a1a1a;
+        color: #f1c40f;
+        font-family: 'DotGothic16', sans-serif;
+        z-index: 9999999;
+        align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box;
+      }
+      
+      body.is-mobile.is-portrait .rotate-device-warning h2 {
+        color: #e74c3c; font-size: 32px; margin-bottom: 15px; font-family: 'Silkscreen', sans-serif;
+      }
+      
+      body.is-mobile.is-portrait #root {
+        display: none !important;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="rotate-device-warning">
+      <h2>¡GIRA EL MÓVIL!</h2>
+      <p>El Profesor Encriptado requiere jugarse en formato horizontal para que quepan todos los expedientes.</p>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      const checkOrientation = () => {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isPortrait = window.innerHeight > window.innerWidth;
+        
+        if (isMobile) {
+          document.body.classList.add('is-mobile');
+          if (isPortrait) {
+            document.body.classList.add('is-portrait');
+          } else {
+            document.body.classList.remove('is-portrait');
+          }
+        }
+      };
+
+      window.addEventListener('resize', checkOrientation);
+      checkOrientation(); 
+    </script>
+  </body>
+</html>
