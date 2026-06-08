@@ -4,7 +4,7 @@ Este proyecto es el repositorio base del juego de lógica y deducción "El Profe
 
 ## Enlace al proyecto original
 
-Puedes jugar a la versión pública aquí: El Profesor Encriptado en itch.io
+Puedes jugar a la versión pública aquí: [El Profesor Encriptado en itch.io](https://dr-plasmadrid.itch.io/el-profesor-encriptado)
 
 ## Especificaciones técnicas
 
