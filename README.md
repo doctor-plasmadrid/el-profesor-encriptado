@@ -1,73 +1,35 @@
-# React + TypeScript + Vite
+# El Profesor Encriptado
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es el repositorio base del juego de lógica y deducción "El Profesor Encriptado". Este motor fue desarrollado como parte de un proyecto de ingeniería de software para explorar estructuras de datos dinámicas y lógica de resolución de puzzles.
 
-Currently, two official plugins are available:
+## Enlace al proyecto original
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Puedes jugar a la versión pública aquí: El Profesor Encriptado en itch.io
 
-## React Compiler
+## Especificaciones técnicas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El juego está construido sobre un stack moderno orientado a la optimización y la escalabilidad del estado:
 
-## Expanding the ESLint configuration
+- Framework: React (Vite).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Lenguaje: TypeScript.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Gestión de Estado: Arquitectura basada en estados inmutables para manejar la resolución de incógnitas.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Sistema de Cifrado: El motor procesa una matriz de 25 alumnos, donde cada nota se calcula dinámicamente combinando una "Base" (F, R, O, Y, S) y un "Modificador" (exponente: ?, |, ·, :).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Deducción: El sistema permite el encadenamiento de queries: consultar alumnos, interrogar al cuerpo docente o fijar valores mediante deducción lógica.
+
+- Escalabilidad: El sistema está diseñado para que la lógica de las bases y los modificadores pueda ser extendida o reconfigurada sin alterar la interfaz.
+
+## Licencia
+
+Este proyecto se distribuye bajo la Licencia MIT. Eres libre de utilizar, modificar y distribuir esta infraestructura para tus propios proyectos, siempre que se mantenga el crédito al autor original: Dr. Plasmadrid.
+
+## Instalación
+
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clona el repositorio: `git clone https://github.com/doctor-plasmadrid/el-profesor-encriptado`
+2. Instala dependencias: `npm install`
+3. Inicia el servidor de desarrollo: `npm run dev`
 ```
