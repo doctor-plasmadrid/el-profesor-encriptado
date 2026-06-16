@@ -79,7 +79,7 @@ export function generateGameData(seedInput?: string): { hiddenValues: HiddenValu
   const addStudents = (list: typeof combinations, profile: StudentProfile) => {
     list.forEach(c => {
       finalStudents.push({
-        id: `Alumno ${idCounter++}`, base: c.base, exponent: c.exp, profile, actualGrade: c.grade, isPassed: c.grade >= 5.0, clueRevealed: null, isFullyDeduced: false
+        id: `${idCounter++}`, base: c.base, exponent: c.exp, profile, actualGrade: c.grade, isPassed: c.grade >= 5.0, clueRevealed: null, isFullyDeduced: false
       });
     });
   };

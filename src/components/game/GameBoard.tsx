@@ -1,6 +1,8 @@
 import { useState, Fragment, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import type { BaseSymbol, ExponentSymbol, Student, Month } from "../../types/game";
 import { generateGameData } from "../../core/generator";
 import { getTeacherDialogue } from "../../utils/TeacherDialogues";
@@ -108,12 +110,12 @@ const ModalButtonRow = styled.div`
 const BASES: BaseSymbol[] = ['F', 'R', 'O', 'Y', 'S'];
 const EXPONENTS: ExponentSymbol[] = ['?', '|', '·', ':', 'none'];
 
-const getBracket = (grade: number) => {
-  if (grade <= 4.9) return "Suspenso";
-  if (grade <= 6.9) return "Aprobado";
-  if (grade <= 8.9) return "Notable";
-  if (grade <= 10.0) return "Sobresaliente";
-  return "Matrícula";
+const getBracket = (grade: number, t: TFunction) => {
+  if (grade <= 4.9) return t('game.brackets.fail');
+  if (grade <= 6.9) return t('game.brackets.pass');
+  if (grade <= 8.9) return t('game.brackets.good');
+  if (grade <= 10.0) return t('game.brackets.excellent');
+  return t('game.brackets.perfect');
 };
 
 type GenderType = 'M' | 'F' | 'NB';
@@ -124,6 +126,8 @@ const getRandomChance = () => Math.random();
 export default function GameBoard() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
+  
   const isLoadSave = location.state?.loadSave;
   const inputSeed = location.state?.seed;
 
@@ -358,7 +362,7 @@ export default function GameBoard() {
               nextScore += 1000 + (turnsRemaining * 50);
             }
           } else if (student.profile === 'average') {
-            clue = getBracket(student.actualGrade);
+            clue = getBracket(student.actualGrade, t);
           } else {
             clue = "silencio";
           }
@@ -381,7 +385,7 @@ export default function GameBoard() {
       newAvailableDialogues.splice(randomIndex, 1);
 
       const encryptedStr = student.exponent === 'none' ? student.base : `${student.base}^${student.exponent}`;
-      const dialogue = getTeacherDialogue(dialogueIndex, playerGender, playerName, student.id, encryptedStr, getBracket(student.actualGrade));
+      const dialogue = getTeacherDialogue(t, dialogueIndex, playerGender, playerName, student.id, encryptedStr, getBracket(student.actualGrade, t));
       
       newTeacherClues[student.id] = dialogue;
       setModalMode('teacher_dialogue');
@@ -436,8 +440,8 @@ export default function GameBoard() {
   };
 
   const getKnownBracket = (student: Student) => {
-    if (isGradeKnown(student)) return getBracket(student.actualGrade);
-    if (teacherClues[student.id]) return getBracket(student.actualGrade);
+    if (isGradeKnown(student)) return getBracket(student.actualGrade, t);
+    if (teacherClues[student.id]) return getBracket(student.actualGrade, t);
     const studentClue = studentClues[student.id];
     if (studentClue && !studentClue.includes(',') && studentClue !== 'silencio' && studentClue !== '¡Six Seven!') return studentClue;
     return '???';
@@ -448,18 +452,18 @@ export default function GameBoard() {
       <GameContainer>
         <EndScreenContainer>
           <MonthTitle style={{ color: gameStatus === 'victory' ? '#f1c40f' : '#e74c3c', fontSize: '60px' }}>
-            {gameStatus === 'victory' ? '¡MISTERIO RESUELTO!' : 'LLEGÓ SEPTIEMBRE...'}
+            {gameStatus === 'victory' ? t('game.end.victory') : t('game.end.gameover')}
           </MonthTitle>
-          <h3 style={{ fontFamily: "'Silkscreen', sans-serif", color: 'white', marginTop: '30px' }}>PUNTUACIÓN FINAL</h3>
+          <h3 style={{ fontFamily: "'Silkscreen', sans-serif", color: 'white', marginTop: '30px' }}>{t('game.end.score')}</h3>
           <ScoreBoard style={{ fontSize: '50px', marginBottom: '30px', justifyContent: 'center' }}>
             {score.toString().padStart(6, '0')}
           </ScoreBoard>
           <p style={{ fontFamily: "'DotGothic16', sans-serif", fontSize: '24px', color: '#bdc3c7' }}>
-            Aprobados descubiertos: <span style={{ color: '#2ecc71' }}>{revealedPassedIds.size} / {totalPassed}</span>
+            {t('game.end.passed')} <span style={{ color: '#2ecc71' }}>{revealedPassedIds.size} / {totalPassed}</span>
             <br />
-            <span style={{ fontSize: '18px', color: '#7f8c8d' }}>Semilla: {seed}</span>
+            <span style={{ fontSize: '18px', color: '#7f8c8d' }}>{t('game.hud.seed')} {seed}</span>
           </p>
-          <RetroButton $variant="info" style={{ marginTop: '40px' }} onClick={() => { playSFX('button'); navigate("/main-menu"); }}>VOLVER AL MENÚ</RetroButton>
+          <RetroButton $variant="info" style={{ marginTop: '40px' }} onClick={() => { playSFX('button'); navigate("/main-menu"); }}>{t('game.end.back')}</RetroButton>
         </EndScreenContainer>
       </GameContainer>
     );
@@ -469,15 +473,15 @@ export default function GameBoard() {
     <GameContainer $isFrozen={isScreenFrozen}>
       <TopBar>
         <div>
-          <MonthTitle>{month}</MonthTitle>
-          <ScoreBoard><PointsLabel>PUNTOS</PointsLabel>{score.toString().padStart(6, '0')}</ScoreBoard>
-          <SeedDisplay>Semilla: {seed}</SeedDisplay>
+          <MonthTitle>{t(`game.months.${month}`)}</MonthTitle>
+          <ScoreBoard><PointsLabel>{t('game.hud.points')}</PointsLabel>{score.toString().padStart(6, '0')}</ScoreBoard>
+          <SeedDisplay>{t('game.hud.seed')} {seed}</SeedDisplay>
         </div>
         <StatusInfo>
-          <span className="prof-name">Profe {playerName}</span>
-          <span className="danger">⚠ Suspensos Totales: {totalFailed}</span>
-          <span>🔋 Batería: {socialBattery}%</span>
-          <span>⏳ Turnos: {turnsRemaining}</span>
+          <span className="prof-name">{t('game.hud.prof')} {playerName}</span>
+          <span className="danger">{t('game.hud.failed')} {totalFailed}</span>
+          <span>{t('game.hud.battery')} {socialBattery}%</span>
+          <span>{t('game.hud.turns')} {turnsRemaining}</span>
         </StatusInfo>
       </TopBar>
 
@@ -552,24 +556,24 @@ export default function GameBoard() {
 
       <ActionRow>
         <RetroButton $variant="danger" onClick={() => { playSFX('button'); setShowPauseModal(true); }}>
-          HUIR DEL AULA
+          {t('game.actions.flee')}
         </RetroButton>
         
         {month === 'Junio' && (
           <RetroButton $variant="warning" $active={interactionMode === 'student'} onClick={() => toggleInteractionMode('student')}>
-            {interactionMode === 'student' ? "CANCELAR" : "ALUMNO (5🔋)"}
+            {interactionMode === 'student' ? t('game.actions.cancel') : t('game.actions.student')}
           </RetroButton>
         )}
 
         {['Junio', 'Julio'].includes(month) && (
           <RetroButton $variant="info" $active={interactionMode === 'teacher'} onClick={() => toggleInteractionMode('teacher')}>
-            {interactionMode === 'teacher' ? "CANCELAR" : "PROFESOR (10🔋)"}
+            {interactionMode === 'teacher' ? t('game.actions.cancel') : t('game.actions.teacher')}
           </RetroButton>
         )}
 
         {activeSymbol && (
           <RetroButton $variant="success" onClick={confirmDeduction}>
-            FIJAR DEDUCCIÓN
+            {t('game.actions.lock')}
           </RetroButton>
         )}
       </ActionRow>
@@ -577,11 +581,11 @@ export default function GameBoard() {
       {showPauseModal && (
         <Overlay>
           <ModalContainer>
-            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#e74c3c" }}>PAUSA</h2>
+            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#e74c3c" }}>{t('game.pause.title')}</h2>
             <ModalButtonRow style={{ flexDirection: 'column' }}>
-              <RetroButton style={{ backgroundColor: "#2ecc71" }} onClick={() => { playSFX('button'); setShowPauseModal(false); }}>REANUDAR</RetroButton>
-              <RetroButton style={{ backgroundColor: "#3498db" }} onClick={saveAndExit}>GUARDAR Y SALIR</RetroButton>
-              <RetroButton style={{ backgroundColor: "#e74c3c" }} onClick={exitWithoutSaving}>SALIR SIN GUARDAR</RetroButton>
+              <RetroButton style={{ backgroundColor: "#2ecc71" }} onClick={() => { playSFX('button'); setShowPauseModal(false); }}>{t('game.pause.resume')}</RetroButton>
+              <RetroButton style={{ backgroundColor: "#3498db" }} onClick={saveAndExit}>{t('game.pause.save')}</RetroButton>
+              <RetroButton style={{ backgroundColor: "#e74c3c" }} onClick={exitWithoutSaving}>{t('game.pause.exit')}</RetroButton>
             </ModalButtonRow>
           </ModalContainer>
         </Overlay>
@@ -591,21 +595,21 @@ export default function GameBoard() {
         <Overlay onClick={() => !isScreenFrozen && setModalMode(null)}>
           <ModalContainer onClick={e => e.stopPropagation()}>
             <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: modalMode === 'student_dialogue' ? '#f39c12' : modalMode === 'teacher_dialogue' ? '#3498db' : 'white', textTransform: 'uppercase' }}>
-              {modalMode === 'stats' ? `Expediente: ${selectedStudent.id}` : modalMode === 'student_dialogue' ? `Diálogo: ${selectedStudent.id}` : `Sala de Profesores`}
+              {modalMode === 'stats' ? t('game.stats.title', { id: selectedStudent.id }) : modalMode === 'student_dialogue' ? t('game.dialogues.student_title', { id: selectedStudent.id }) : t('game.dialogues.teacher_title')}
             </h2>
             
             {modalMode === 'stats' && (
               <div style={{ fontFamily: "'DotGothic16', sans-serif", fontSize: '20px', lineHeight: '1.6', textAlign: 'left', background: 'rgba(0,0,0,0.5)', padding: '20px', border: '2px dashed #7f8c8d' }}>
-                <p><strong>Nota encriptada:</strong> {selectedStudent.base}{selectedStudent.exponent !== 'none' ? <sup>{selectedStudent.exponent}</sup> : ''}</p>
-                <p><strong>Nota descifrada:</strong> <span style={{ color: '#4af626' }}>{getDecryptedGradeDisplay(selectedStudent)}</span></p>
-                <p><strong>Baremo conocido:</strong> {getKnownBracket(selectedStudent)}</p>
+                <p><strong>{t('game.stats.encrypted')}</strong> {selectedStudent.base}{selectedStudent.exponent !== 'none' ? <sup>{selectedStudent.exponent}</sup> : ''}</p>
+                <p><strong>{t('game.stats.decrypted')}</strong> <span style={{ color: '#4af626' }}>{getDecryptedGradeDisplay(selectedStudent)}</span></p>
+                <p><strong>{t('game.stats.bracket')}</strong> {getKnownBracket(selectedStudent)}</p>
               </div>
             )}
 
             {modalMode === 'student_dialogue' && (
               <div style={{ fontFamily: "'DotGothic16', sans-serif", fontSize: '22px', fontStyle: 'italic', padding: '20px', background: 'rgba(0,0,0,0.3)', borderLeft: '4px solid #f39c12' }}>
                 {studentClues[selectedStudent.id] === 'silencio' ? (
-                  <span style={{ color: '#e74c3c' }}>"..." (Te mira mal y se da la vuelta ignorándote).</span>
+                  <span style={{ color: '#e74c3c' }}>{t('game.dialogues.silence', { context: playerGender })}</span>
                 ) : studentClues[selectedStudent.id] === '¡Six Seven!' ? (
                   <span style={{ 
                     fontFamily: "'Comic Sans MS', 'Comic Sans', cursive", 
@@ -619,10 +623,10 @@ export default function GameBoard() {
                   }}>
                     "¡SIX SEVEN!"
                   </span>
-                ) : studentClues[selectedStudent.id].includes(',') ? (
-                  <span>"¿Mi nota, Profe {playerName}? Despejé la ecuación de mi media y saqué exactamente un <strong style={{ color: '#4af626' }}>{studentClues[selectedStudent.id]}</strong>, sin duda."</span>
+                ) : studentClues[selectedStudent.id].includes(',') || studentClues[selectedStudent.id].includes('.') ? (
+                  <span dangerouslySetInnerHTML={{ __html: t('game.dialogues.exact', { context: playerGender, playerName, grade: `<strong style="color: #4af626">${studentClues[selectedStudent.id]}</strong>` }) }} />
                 ) : (
-                  <span>"Pues no estoy seguro de la nota numérica, Profe {playerName}, pero en el boletín mi rendimiento marcaba un <strong style={{ color: '#f1c40f' }}>{studentClues[selectedStudent.id]}</strong>."</span>
+                  <span dangerouslySetInnerHTML={{ __html: t('game.dialogues.bracket', { context: playerGender, playerName, bracket: `<strong style="color: #f1c40f">${studentClues[selectedStudent.id]}</strong>` }) }} />
                 )}
               </div>
             )}
@@ -635,7 +639,7 @@ export default function GameBoard() {
 
             {!isScreenFrozen && (
               <RetroButton $variant="info" style={{ marginTop: '10px' }} onClick={() => { playSFX('button'); setModalMode(null); }}>
-                CERRAR
+                {t('game.dialogues.close')}
               </RetroButton>
             )}
           </ModalContainer>

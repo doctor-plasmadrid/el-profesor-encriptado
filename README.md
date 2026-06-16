@@ -1,4 +1,40 @@
-# El Profesor Encriptado
+# English: The Encrypted Professor
+
+This project is the base repository for the logic and deduction game "The Encrypted Professor". This engine was developed as part of a software engineering project to explore dynamic data structures and puzzle-solving logic.
+
+## Link to the original project
+
+You can play the public version here: [The Encrypted Professor, itch.io](https://dr-plasmadrid.itch.io/el-profesor-encriptado)
+
+## Technical specifications
+
+The game is built on a modern stack oriented towards optimization and state scalability:
+
+- Framework: React (Vite).
+
+- Language: TypeScript.
+
+- State Management: Architecture based on immutable states to handle the resolution of unknowns.
+
+- Encryption System: The engine processes a matrix of 25 students, where each grade is dynamically calculated by combining a "Base" (F, R, O, Y, S) and a "Modifier" (exponent: ?, |, ·, :).
+
+- Deduction: The system allows query chaining: consulting students, questioning the teaching staff, or locking values through logical deduction.
+
+- Scalability: The system is designed so that the logic of the bases and modifiers can be extended or reconfigured without altering the interface.
+
+## License
+
+This project is distributed under the MIT License. You are free to use, modify, and distribute this infrastructure for your own projects, provided that credit is given to the original author: Dr. Plasmadrid.
+
+## Installation
+
+```
+1. Clone the repository: `git clone https://github.com/doctor-plasmadrid/el-profesor-encriptado`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+```
+
+# Español: El Profesor Encriptado
 
 Este proyecto es el repositorio base del juego de lógica y deducción "El Profesor Encriptado". Este motor fue desarrollado como parte de un proyecto de ingeniería de software para explorar estructuras de datos dinámicas y lógica de resolución de puzzles.
 

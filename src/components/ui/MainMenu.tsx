@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { playSFX, playBGM, stopBGM } from "../../utils/audio";
 
 const MenuContainer = styled.div`
@@ -77,11 +78,23 @@ const GenderButton = styled.button<{ $active: boolean }>`
 const SeedContainer = styled.div`
   display: flex; width: 100%; gap: 10px; align-items: stretch; margin-top: 10px;
 `;
+const LangGrid = styled.div`
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; margin-top: 10px;
+`;
 
 type GenderType = 'M' | 'F' | 'NB';
 
+const LANGUAGES = [
+  { code: 'es-ES', label: 'ES-ES' },
+  { code: 'es-419', label: 'ES-LA' },
+  { code: 'en', label: 'EN' },
+  { code: 'fr', label: 'FR' },
+  { code: 'ja', label: '日本語' }
+];
+
 export default function MainMenu() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
@@ -183,64 +196,58 @@ export default function MainMenu() {
     if (pendingAction) executeStart(pendingAction);
   };
 
-  const getSeguroText = (gender: GenderType) => {
-    if (gender === 'F') return 'segura';
-    if (gender === 'NB') return 'segure';
-    return 'seguro';
-  };
-
   return (
     <MenuContainer>
       <TitleContainer>
-        <GameTitle>EL PROFESOR</GameTitle>
-        <GameTitle style={{ color: "#e74c3c" }}>ENCRIPTADO</GameTitle>
-        <SubTitle>Descifra las notas</SubTitle>
+        <GameTitle>{t('menu.title_1')}</GameTitle>
+        <GameTitle style={{ color: "#e74c3c" }}>{t('menu.title_2')}</GameTitle>
+        <SubTitle>{t('menu.subtitle')}</SubTitle>
       </TitleContainer>
 
       <ContentWrapper>
         {hasSave && (
           <RetroButton style={{ backgroundColor: "#2ecc71" }} onClick={() => { playSFX('start'); navigate("/game", { state: { loadSave: true } }); }}>
-            CONTINUAR
+            {t('menu.continue')}
           </RetroButton>
         )}
         <RetroButton onClick={() => handleStartRequest('new')}>
-          NUEVA PARTIDA
+          {t('menu.new_game')}
         </RetroButton>
         
         <SeedContainer>
           <RetroInput 
-            type="text" maxLength={8} placeholder="SEMILLA..." value={seedInput} 
+            type="text" maxLength={8} placeholder={t('menu.seed_placeholder')} value={seedInput} 
             onChange={(e) => setSeedInput(e.target.value.replace(/[^a-zA-Z0-9?.:]/g, '').toUpperCase())} 
             style={{ flex: 1, padding: '10px', fontSize: '14px' }}
           />
           <RetroButton style={{ flex: 1, padding: '10px', fontSize: '16px' }} onClick={() => handleStartRequest('seed')}>
-            SEMILLA
+            {t('menu.seed_btn')}
           </RetroButton>
         </SeedContainer>
       </ContentWrapper>
 
       <Footer>
         <FooterLink style={{ borderRight: "4px dashed #7f8c8d" }} onClick={() => { playSFX('button'); setShowProfileModal(true); }}>
-          PERFIL
+          {t('menu.profile')}
         </FooterLink>
         <FooterLink style={{ borderRight: "4px dashed #7f8c8d" }} onClick={() => { playSFX('button'); setShowSettingsModal(true); }}>
-          AJUSTES
+          {t('menu.settings')}
         </FooterLink>
         <FooterLink onClick={() => { playSFX('button'); setShowCreditsModal(true); }}>
-          CRÉDITOS
+          {t('menu.credits')}
         </FooterLink>
       </Footer>
 
       {showWarningModal && (
         <Overlay>
           <ModalContainer>
-            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#e74c3c" }}>¡ATENCIÓN!</h2>
+            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#e74c3c" }}>{t('modals.warning.title')}</h2>
             <p style={{ fontSize: '18px', fontFamily: "'DotGothic16', sans-serif", lineHeight: 1.5 }}>
-              Iniciar una nueva partida causará que los datos de la partida anterior se borren. ¿Estás {getSeguroText(playerGender)}?
+              {t('modals.warning.desc', { context: playerGender })}
             </p>
             <ModalButtonRow>
-              <RetroButton style={{ backgroundColor: "#7f8c8d", fontSize: "16px", padding: "12px" }} onClick={() => { playSFX('button'); setShowWarningModal(false); }}>VOLVER</RetroButton>
-              <RetroButton style={{ backgroundColor: "#e74c3c", fontSize: "16px", padding: "12px" }} onClick={handleConfirmWarning}>INICIAR</RetroButton>
+              <RetroButton style={{ backgroundColor: "#7f8c8d", fontSize: "16px", padding: "12px" }} onClick={() => { playSFX('button'); setShowWarningModal(false); }}>{t('modals.warning.back')}</RetroButton>
+              <RetroButton style={{ backgroundColor: "#e74c3c", fontSize: "16px", padding: "12px" }} onClick={handleConfirmWarning}>{t('modals.warning.start')}</RetroButton>
             </ModalButtonRow>
           </ModalContainer>
         </Overlay>
@@ -249,17 +256,17 @@ export default function MainMenu() {
       {showProfileModal && (
         <Overlay>
           <ModalContainer>
-            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#f1c40f" }}>IDENTIFICACIÓN</h2>
-            <ProfilePreview>Profe {tempName || "???"}</ProfilePreview>
+            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#f1c40f" }}>{t('modals.profile.title')}</h2>
+            <ProfilePreview>{t('modals.profile.preview')} {tempName || "???"}</ProfilePreview>
             <GenderToggleRow>
-              <GenderButton $active={tempGender === 'M'} onClick={() => { playSFX('button'); setTempGender('M'); }}>Hombre</GenderButton>
-              <GenderButton $active={tempGender === 'F'} onClick={() => { playSFX('button'); setTempGender('F'); }}>Mujer</GenderButton>
-              <GenderButton $active={tempGender === 'NB'} onClick={() => { playSFX('button'); setTempGender('NB'); }}>No Binario</GenderButton>
+              <GenderButton $active={tempGender === 'M'} onClick={() => { playSFX('button'); setTempGender('M'); }}>{t('modals.profile.male')}</GenderButton>
+              <GenderButton $active={tempGender === 'F'} onClick={() => { playSFX('button'); setTempGender('F'); }}>{t('modals.profile.female')}</GenderButton>
+              <GenderButton $active={tempGender === 'NB'} onClick={() => { playSFX('button'); setTempGender('NB'); }}>{t('modals.profile.nb')}</GenderButton>
             </GenderToggleRow>
-            <RetroInput type="text" maxLength={12} placeholder="Tu apellido..." value={tempName} onChange={(e) => setTempName(e.target.value)} />
+            <RetroInput type="text" maxLength={12} placeholder={t('modals.profile.placeholder')} value={tempName} onChange={(e) => setTempName(e.target.value)} />
             <ModalButtonRow>
-              <RetroButton style={{ backgroundColor: "#7f8c8d", fontSize: "16px", padding: "12px" }} onClick={handleCancelProfile}>CANCELAR</RetroButton>
-              <RetroButton style={{ backgroundColor: "#2ecc71", fontSize: "16px", padding: "12px" }} onClick={handleSaveProfile}>GUARDAR</RetroButton>
+              <RetroButton style={{ backgroundColor: "#7f8c8d", fontSize: "16px", padding: "12px" }} onClick={handleCancelProfile}>{t('modals.profile.cancel')}</RetroButton>
+              <RetroButton style={{ backgroundColor: "#2ecc71", fontSize: "16px", padding: "12px" }} onClick={handleSaveProfile}>{t('modals.profile.save')}</RetroButton>
             </ModalButtonRow>
           </ModalContainer>
         </Overlay>
@@ -268,27 +275,42 @@ export default function MainMenu() {
       {showSettingsModal && (
         <Overlay>
           <ModalContainer>
-            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#3498db" }}>AJUSTES</h2>
+            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#3498db" }}>{t('modals.settings.title')}</h2>
             
-            <GenderToggleRow style={{ marginTop: '20px' }}>
+            <GenderToggleRow style={{ marginTop: '10px' }}>
               <GenderButton $active={bgmEnabled} onClick={toggleBGM}>
-                Música: {bgmEnabled ? "ON" : "OFF"}
+                {t('modals.settings.music')}: {bgmEnabled ? t('modals.settings.on') : t('modals.settings.off')}
               </GenderButton>
               <GenderButton $active={sfxEnabled} onClick={toggleSFX}>
-                Efectos: {sfxEnabled ? "ON" : "OFF"}
+                {t('modals.settings.sfx')}: {sfxEnabled ? t('modals.settings.on') : t('modals.settings.off')}
               </GenderButton>
             </GenderToggleRow>
 
             {sixSevenDiscovered && (
               <GenderToggleRow>
                 <GenderButton $active={sixSevenEnabled} onClick={toggleSixSeven}>
-                  67: {sixSevenEnabled ? "ON" : "OFF"}
+                  67: {sixSevenEnabled ? t('modals.settings.on') : t('modals.settings.off')}
                 </GenderButton>
               </GenderToggleRow>
             )}
 
+            <div style={{ marginTop: '15px' }}>
+              <LangGrid>
+                {LANGUAGES.map(lang => (
+                  <GenderButton
+                    key={lang.code}
+                    $active={i18n.resolvedLanguage === lang.code || i18n.language === lang.code}
+                    onClick={() => { playSFX('button'); i18n.changeLanguage(lang.code); }}
+                    style={{ padding: '8px', fontSize: '14px', flex: '1 1 25%' }}
+                  >
+                    {lang.label}
+                  </GenderButton>
+                ))}
+              </LangGrid>
+            </div>
+
             <RetroButton style={{ backgroundColor: "#7f8c8d", fontSize: "16px", padding: "12px", marginTop: "10px" }} onClick={() => { playSFX('button'); setShowSettingsModal(false); }}>
-              CERRAR
+              {t('modals.settings.close')}
             </RetroButton>
           </ModalContainer>
         </Overlay>
@@ -297,7 +319,7 @@ export default function MainMenu() {
       {showCreditsModal && (
         <Overlay>
           <ModalContainer>
-            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#9b59b6" }}>CRÉDITOS</h2>
+            <h2 style={{ fontFamily: "'Silkscreen', sans-serif", margin: 0, color: "#9b59b6" }}>CREDITS</h2>
             
             <div style={{ fontFamily: "'DotGothic16', sans-serif", fontSize: '18px', lineHeight: '1.6', textAlign: 'left', color: '#bdc3c7', background: 'rgba(0,0,0,0.4)', padding: '15px', border: '2px solid #7f8c8d', marginTop: '10px' }}>
               <p style={{ margin: '0 0 10px 0' }}><strong style={{ color: '#4af626' }}>Lead Development:</strong><br/>Dr. Plasmadrid</p>
@@ -307,7 +329,7 @@ export default function MainMenu() {
             </div>
 
             <RetroButton style={{ backgroundColor: "#7f8c8d", fontSize: "16px", padding: "12px", marginTop: "10px" }} onClick={() => { playSFX('button'); setShowCreditsModal(false); }}>
-              CERRAR
+              CLOSE
             </RetroButton>
           </ModalContainer>
         </Overlay>

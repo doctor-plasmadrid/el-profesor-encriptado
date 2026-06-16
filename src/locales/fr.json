@@ -1,0 +1,104 @@
+{
+  "translation": {
+    "menu": {
+      "title_1": "LE PROFESSEUR",
+      "title_2": "CRYPTÉ",
+      "subtitle": "Déchiffre les notes",
+      "continue": "CONTINUER",
+      "new_game": "NOUVELLE PARTIE",
+      "seed_placeholder": "GRAINE...",
+      "seed_btn": "GRAINE",
+      "profile": "PROFIL",
+      "settings": "PARAMÈTRES",
+      "credits": "CRÉDITS"
+    },
+    "modals": {
+      "warning": {
+        "title": "ATTENTION !",
+        "desc_M": "Commencer une nouvelle partie effacera vos données précédentes. Es-tu sûr ?",
+        "desc_F": "Commencer une nouvelle partie effacera vos données précédentes. Es-tu sûre ?",
+        "desc_NB": "Commencer une nouvelle partie effacera vos données précédentes. Es-tu sûr.e ?",
+        "back": "RETOUR",
+        "start": "DÉMARRER"
+      },
+      "profile": {
+        "title": "IDENTIFICATION",
+        "preview": "Prof",
+        "male": "Homme",
+        "female": "Femme",
+        "nb": "Non Binaire",
+        "placeholder": "Ton nom...",
+        "cancel": "ANNULER",
+        "save": "SAUVEGARDER"
+      },
+      "settings": {
+        "title": "PARAMÈTRES",
+        "music": "Musique",
+        "sfx": "Effets",
+        "on": "OUI",
+        "off": "NON",
+        "close": "FERMER"
+      }
+    },"game": {
+      "hud": { "points": "POINTS", "seed": "Graine :", "prof": "Prof", "failed": "⚠ Échecs Totaux :", "battery": "🔋 Batterie :", "turns": "⏳ Tours :" },
+      "actions": { "flee": "FUIR LA CLASSE", "cancel": "ANNULER", "student": "ÉLÈVE (5🔋)", "teacher": "PROF (10🔋)", "lock": "VALIDER DÉDUCTION" },
+      "pause": { "title": "PAUSE", "resume": "REPRENDRE", "save": "SAUVEGARDER ET QUITTER", "exit": "QUITTER SANS SAUVER" },
+      "stats": { "title": "Dossier : Élève {{id}}", "encrypted": "Note cryptée :", "decrypted": "Note déchiffrée :", "bracket": "Barème connu :" },
+      "dialogues": {
+        "student_title": "Dialogue : Élève {{id}}",
+        "teacher_title": "Salle des Profs",
+        "silence": "\"...\" (Vous regarde de travers et se détourne en vous ignorant).",
+        "exact_M": "\"Ma note, Prof {{playerName}} ? J'ai résolu l'équation de ma moyenne et j'ai eu exactement un {{grade}}, sans aucun doute.\"",
+        "exact_F": "\"Ma note, Prof {{playerName}} ? J'ai résolu l'équation de ma moyenne et j'ai eu exactement un {{grade}}, sans aucun doute.\"",
+        "exact_NB": "\"Ma note, Prof {{playerName}} ? J'ai résolu l'équation de ma moyenne et j'ai eu exactement un {{grade}}, sans aucun doute.\"",
+        "bracket_M": "\"Eh bien, je ne suis pas sûr de la note exacte, Prof {{playerName}}, mais sur le bulletin mon rendement indiquait {{bracket}}.\"",
+        "bracket_F": "\"Eh bien, je ne suis pas sûre de la note exacte, Prof {{playerName}}, mais sur le bulletin mon rendement indiquait {{bracket}}.\"",
+        "bracket_NB": "\"Eh bien, je ne suis pas sûr ou sûre de la note exacte, Prof {{playerName}}, mais sur le bulletin mon rendement indiquait {{bracket}}.\"",
+        "close": "FERMER"
+      },
+      "end": { "victory": "MYSTÈRE RÉSOLU !", "gameover": "SEPTEMBRE EST LÀ...", "score": "SCORE FINAL", "passed": "Admis découverts :", "back": "RETOUR AU MENU" },
+      "brackets": { "fail": "Insuffisant", "pass": "Passable", "good": "Assez Bien", "excellent": "Bien", "perfect": "Très Bien" },
+      "months": { "Junio": "Juin", "Julio": "Juillet", "Agosto": "Août", "Septiembre": "Septembre" }
+    },
+    "dialogues": {
+      "t0_M": "\"Tu es le nouveau professeur. Enchanté de te rencontrer ! Bonne chance avec l'énigme laissée par celui qui est parti, je n'imagine pas devoir déchiffrer des notes cachées pour rédiger le bulletin ! Cet homme était fou... Je peux t'aider concernant l'élève {{studentId}}. Tu dis qu'il a eu un {{encryptedGrade}}... Je lui ai enseigné l'histoire, et je peux te dire d'expérience que son niveau est de {{baremo}} dans mes cours. Quand ta journée sera finie, ça te dit d'aller prendre un café et d'en discuter ?\"",
+      "t0_F": "\"Tu es la nouvelle professeure. Enchantée de te rencontrer ! Bonne chance avec l'énigme laissée par celui qui est parti, je n'imagine pas devoir déchiffrer des notes cachées pour rédiger le bulletin ! Cet homme était fou... Je peux t'aider concernant l'élève {{studentId}}. Tu dis qu'il a eu un {{encryptedGrade}}... Je lui ai enseigné l'histoire, et je peux te dire d'expérience que son niveau est de {{baremo}} dans mes cours. Quand ta journée sera finie, ça te dit d'aller prendre un café et d'en discuter ?\"",
+      "t0_NB": "\"Tu es le nouveau ou la nouvelle prof. Ravi.e de te rencontrer ! Bonne chance avec l'énigme laissée par celui qui est parti, je n'imagine pas devoir déchiffrer des notes cachées pour rédiger le bulletin ! Cet homme était fou... Je peux t'aider concernant l'élève {{studentId}}. Tu dis qu'il a eu un {{encryptedGrade}}... Je lui ai enseigné l'histoire, et je peux te dire d'expérience que son niveau est de {{baremo}} dans mes cours. Quand ta journée sera finie, ça te dit d'aller prendre un café et d'en discuter ?\"",
+      "t1_M": "\"Ah, c'est toi ! Bienvenu dans le département. N'écoute pas les rumeurs, ce lycée est plutôt calme. Cette note là, c'est de l'élève {{studentId}} ? Quel symbole bizarre ce {{encryptedGrade}}... Enfin, si ça peut t'aider, dans ma matière, il se maintient toujours dans la tranche {{baremo}}.\"",
+      "t1_F": "\"Ah, c'est toi ! Bienvenue dans le département. N'écoute pas les rumeurs, ce lycée est plutôt calme. Cette note là, c'est de l'élève {{studentId}} ? Quel symbole bizarre ce {{encryptedGrade}}... Enfin, si ça peut t'aider, dans ma matière, il se maintient toujours dans la tranche {{baremo}}.\"",
+      "t1_NB": "\"Ah, c'est toi ! Bienvenu.e dans le département. N'écoute pas les rumeurs, ce lycée est plutôt calme. Cette note là, c'est de l'élève {{studentId}} ? Quel symbole bizarre ce {{encryptedGrade}}... Enfin, si ça peut t'aider, dans ma matière, il se maintient toujours dans la tranche {{baremo}}.\"",
+      "t2": "\"Désolé, je suis pressé, je dois imprimer 40 contrôles ! Tu me demandes pour l'élève {{studentId}} ? Ouf, avec ce {{encryptedGrade}} je ne sais pas quoi te dire pour ses maths, mais en littérature c'est clairement un gamin de {{baremo}}. On se voit à la récré !\"",
+      "t3": "\"Salut, collègue. Tu as mauvaise mine, tu regardes ces combinaisons depuis longtemps ? Si tu bloques sur l'élève {{studentId}} et son mystérieux {{encryptedGrade}}, je te conseille de le traiter comme un élève de {{baremo}}. Il m'a rarement prouvé le contraire.\"",
+      "t4_M": "\"Bienvenu ! Quelle galère avec ces bulletins cryptés, hein ? J'avais l'élève {{studentId}} en arts plastiques. Je ne comprends pas ce {{encryptedGrade}}, mais son niveau général d'effort est de {{baremo}}. Bon courage avec ce casse-tête !\"",
+      "t4_F": "\"Bienvenue ! Quelle galère avec ces bulletins cryptés, hein ? J'avais l'élève {{studentId}} en arts plastiques. Je ne comprends pas ce {{encryptedGrade}}, mais son niveau général d'effort est de {{baremo}}. Bon courage avec ce casse-tête !\"",
+      "t4_NB": "\"Bienvenu.e ! Quelle galère avec ces bulletins cryptés, hein ? J'avais l'élève {{studentId}} en arts plastiques. Je ne comprends pas ce {{encryptedGrade}}, mais son niveau général d'effort est de {{baremo}}. Bon courage avec ce casse-tête !\"",
+      "t5_M": "\"Chut, baisse la voix, je corrige. L'élève {{studentId}} ? Oui, je le connais. Peu m'importe qu'il y ait écrit {{encryptedGrade}}, je suis sûr que son vrai niveau est de {{baremo}}. Laisse-moi finir ça, s'il te plaît.\"",
+      "t5_F": "\"Chut, baisse la voix, je corrige. L'élève {{studentId}} ? Oui, je le connais. Peu m'importe qu'il y ait écrit {{encryptedGrade}}, je suis sûre que son vrai niveau est de {{baremo}}. Laisse-moi finir ça, s'il te plaît.\"",
+      "t5_NB": "\"Chut, baisse la voix, je corrige. L'élève {{studentId}} ? Oui, je le connais. Peu m'importe qu'il y ait écrit {{encryptedGrade}}, je suis sûr.e que son vrai niveau est de {{baremo}}. Laisse-moi finir ça, s'il te plaît.\"",
+      "t6": "\"Eh bien, l'ancien professeur de ton poste se prenait pour un génie. Pour l'élève {{studentId}}, ignore ce {{encryptedGrade}}. Son dossier académique crie '{{baremo}}' sur tous les toits. À plus.\"",
+      "t7": "\"Salut, Prof {{playerName}} ! J'étais à la machine à café. Tu as besoin d'aide avec l'élève {{studentId}} ? Ce {{encryptedGrade}} perturberait n'importe qui. Si tu me demandes, je dirais qu'il est de {{baremo}}. Bonne chance pour la suite !\"",
+      "t8_M": "\"C'est toi le nouveau, n'est-ce pas ? Je te plains, pauvre collègue. Ce gribouillis de {{encryptedGrade}}, c'est pour l'élève {{studentId}} ? Quel mal de crâne. En éducation physique, son rendement est de {{baremo}}.\"",
+      "t8_F": "\"C'est toi la nouvelle, n'est-ce pas ? Je te plains, pauvre collègue. Ce gribouillis de {{encryptedGrade}}, c'est pour l'élève {{studentId}} ? Quel mal de crâne. En éducation physique, son rendement est de {{baremo}}.\"",
+      "t8_NB": "\"C'est toi le ou la nouvelle prof, n'est-ce pas ? Je te plains, pauvre collègue. Ce gribouillis de {{encryptedGrade}}, c'est pour l'élève {{studentId}} ? Quel mal de crâne. En éducation physique, son rendement est de {{baremo}}.\"",
+      "t9": "\"Hé, Prof ! Si tu veux survivre ici, il te faut de l'instinct. Oublie ce {{encryptedGrade}}. L'élève {{studentId}} est un cas d'école, clairement un {{baremo}}. Crois-moi, ça fait 20 ans que je suis ici.\"",
+      "t10_M": "\"Enchanté de te saluer. Mon Dieu, tu en es encore au tableau des symboles ? Pour l'élève {{studentId}}, je peux te confirmer que même s'il y a écrit {{encryptedGrade}}, il navigue toujours dans un barème de {{baremo}}.\"",
+      "t10_F": "\"Enchantée de te saluer. Mon Dieu, tu en es encore au tableau des symboles ? Pour l'élève {{studentId}}, je peux te confirmer que même s'il y a écrit {{encryptedGrade}}, il navigue toujours dans un barème de {{baremo}}.\"",
+      "t10_NB": "\"Enchanté.e de te saluer. Mon Dieu, tu en es encore au tableau des symboles ? Pour l'élève {{studentId}}, je peux te confirmer que même s'il y a écrit {{encryptedGrade}}, il navigue toujours dans un barème de {{baremo}}.\"",
+      "t11": "\"Comment se passe ta journée, Prof {{playerName}} ? Coincé avec l'élève {{studentId}} ? Ce {{encryptedGrade}} c'est du chinois pour moi, mais connaissant ses habitudes d'étude, il est de {{baremo}}. N'abandonne pas !\"",
+      "t12_M": "\"Mince, les fameuses notes cryptées ! J'ai essayé de les déchiffrer et j'ai abandonné. Heureusement que tu es intelligent. Pour l'élève {{studentId}}, je dirais qu'il est de {{baremo}}, peu importe ce {{encryptedGrade}}.\"",
+      "t12_F": "\"Mince, les fameuses notes cryptées ! J'ai essayé de les déchiffrer et j'ai abandonné. Heureusement que tu es intelligente. Pour l'élève {{studentId}}, je dirais qu'il est de {{baremo}}, peu importe ce {{encryptedGrade}}.\"",
+      "t12_NB": "\"Mince, les fameuses notes cryptées ! J'ai essayé de les déchiffrer et j'ai abandonné. Heureusement que tu es intelligent.e. Pour l'élève {{studentId}}, je dirais qu'il est de {{baremo}}, peu importe ce {{encryptedGrade}}.\"",
+      "t13_M": "\"Tu as l'air débordé. Viens, assieds-toi une minute. Des doutes sur l'élève {{studentId}} ? Ce {{encryptedGrade}} est une folie, mais son vrai dossier indique que son attitude est de {{baremo}}. Respire, tu vas y arriver.\"",
+      "t13_F": "\"Tu as l'air débordée. Viens, assieds-toi une minute. Des doutes sur l'élève {{studentId}} ? Ce {{encryptedGrade}} est une folie, mais son vrai dossier indique que son attitude est de {{baremo}}. Respire, tu vas y arriver.\"",
+      "t13_NB": "\"Tu as l'air débordé.e. Viens, assieds-toi une minute. Des doutes sur l'élève {{studentId}} ? Ce {{encryptedGrade}} est une folie, mais son vrai dossier indique que son attitude est de {{baremo}}. Respire, tu vas y arriver.\"",
+      "t14": "\"Salut, prof. Je sors d'un rendez-vous avec les parents de l'élève {{studentId}}. Je te jure que ce {{encryptedGrade}} ne reflète pas sa réalité, qui est purement de {{baremo}}. Je vais en salle des profs pour me reposer.\"",
+      "t15": "\"Hé, collègue ! Je te vois fixer ce {{encryptedGrade}}. Ne te prends pas la tête avec l'élève {{studentId}}. Je l'ai eu en cours l'année dernière et c'est un {{baremo}} sûr. Allez, on offre des viennoiseries à l'accueil.\"",
+      "t16_M": "\"Tu es le courageux qui a accepté le poste, n'est-ce pas ? Quel héroïsme ! De l'élève {{studentId}}, je peux seulement te dire que ce {{encryptedGrade}} cache un niveau de {{baremo}}. Bonne chance avec le décryptage !\"",
+      "t16_F": "\"Tu es la courageuse qui a accepté le poste, n'est-ce pas ? Quel héroïsme ! De l'élève {{studentId}}, je peux seulement te dire que ce {{encryptedGrade}} cache un niveau de {{baremo}}. Bonne chance avec le décryptage !\"",
+      "t16_NB": "\"Tu es le/la courageux/se qui a accepté le poste, n'est-ce pas ? Quel héroïsme ! De l'élève {{studentId}}, je peux seulement te dire que ce {{encryptedGrade}} cache un niveau de {{baremo}}. Bonne chance avec le décryptage !\"",
+      "t17": "\"Excuse-moi, as-tu un stylo rouge en trop ? Ah, merci. Au fait, si ce {{encryptedGrade}} appartient à l'élève {{studentId}}, je te confirme qu'il est de {{baremo}}. On se voit au conseil.\"",
+      "t18": "\"Quel hiéroglyphe ! L'élève {{studentId}} n'est pas aussi compliqué que ce {{encryptedGrade}} le laisse paraître. Traite-le comme un élève de {{baremo}} et tu auras tout juste.\"",
+      "t19": "\"Salut, tu es Prof {{playerName}} ? On m'a dit que tu déchiffrais les notes. Pour t'éviter des ennuis avec l'élève {{studentId}} : oublie le {{encryptedGrade}}, évalue-le comme {{baremo}}. Bon courage !\""
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "translation": {
+    "menu": {
+      "title_1": "THE ENCRYPTED",
+      "title_2": "PROFESSOR",
+      "subtitle": "Decipher the grades",
+      "continue": "CONTINUE",
+      "new_game": "NEW GAME",
+      "seed_placeholder": "SEED...",
+      "seed_btn": "SEED",
+      "profile": "PROFILE",
+      "settings": "SETTINGS",
+      "credits": "CREDITS"
+    },
+    "modals": {
+      "warning": {
+        "title": "WARNING!",
+        "desc": "Starting a new game will erase your previous save data. Are you sure?",
+        "back": "BACK",
+        "start": "START"
+      },
+      "profile": {
+        "title": "IDENTIFICATION",
+        "preview": "Prof.",
+        "male": "Male",
+        "female": "Female",
+        "nb": "Non-Binary",
+        "placeholder": "Your surname...",
+        "cancel": "CANCEL",
+        "save": "SAVE"
+      },
+      "settings": {
+        "title": "SETTINGS",
+        "music": "Music",
+        "sfx": "Effects",
+        "on": "ON",
+        "off": "OFF",
+        "close": "CLOSE"
+      }
+    },
+    "game": {
+      "hud": { "points": "POINTS", "seed": "Seed:", "prof": "Prof", "failed": "⚠ Total Fails:", "battery": "🔋 Battery:", "turns": "⏳ Turns:" },
+      "actions": { "flee": "FLEE CLASSROOM", "cancel": "CANCEL", "student": "STUDENT (5🔋)", "teacher": "TEACHER (10🔋)", "lock": "LOCK DEDUCTION" },
+      "pause": { "title": "PAUSE", "resume": "RESUME", "save": "SAVE AND EXIT", "exit": "EXIT WITHOUT SAVING" },
+      "stats": { "title": "Record: Student {{id}}", "encrypted": "Encrypted grade:", "decrypted": "Decrypted grade:", "bracket": "Known bracket:" },
+      "dialogues": {
+        "student_title": "Dialogue: Student {{id}}",
+        "teacher_title": "Staff Room",
+        "silence": "\"...\" (Glares at you and turns away ignoring you).",
+        "exact": "\"My grade, Prof {{playerName}}? I cleared the equation of my average and got exactly a {{grade}}, without a doubt.\"",
+        "bracket": "\"Well, I'm not sure about the exact number, Prof {{playerName}}, but on the report card my performance was marked as {{bracket}}.\"",
+        "close": "CLOSE"
+      },
+      "end": { "victory": "MYSTERY SOLVED!", "gameover": "SEPTEMBER IS HERE...", "score": "FINAL SCORE", "passed": "Passed students found:", "back": "RETURN TO MENU" },
+      "brackets": { "fail": "F (Fail)", "pass": "C (Pass)", "good": "B (Merit)", "excellent": "A (Excellent)", "perfect": "A+ (Distinction)" },
+      "months": { "Junio": "June", "Julio": "July", "Agosto": "August", "Septiembre": "September" }
+    },
+    "dialogues": {
+      "t0": "\"You're the new Professor. Nice to meet you! Good luck with the puzzle left by the guy who left, I can't imagine having to decipher hidden grades to write the report! That man was crazy... I can help you with student {{studentId}}. You say they got a {{encryptedGrade}}... I taught them history, and I can tell you from experience that their performance is {{baremo}} in my classes. When your shift ends, do you want to grab a coffee with me and chat?\"",
+      "t1": "\"Ah, it's you! Welcome to the department. Don't listen to the rumors, this high school is quite peaceful. Is that note over there from student {{studentId}}? What a weird symbol, that {{encryptedGrade}}... Anyway, if it helps, in my subject they always stay in the {{baremo}} range.\"",
+      "t2": "\"Sorry I'm in a rush, I have to print 40 exams! You're asking about student {{studentId}}? Oof, with that {{encryptedGrade}} I don't know what to tell you about their math, but in literature they are clearly a {{baremo}} kid. See you at recess!\"",
+      "t3": "\"Hey, colleague. You don't look so good, have you been staring at those combinations for a long time? If you're stuck with student {{studentId}} and their mysterious {{encryptedGrade}}, I advise you to treat them as a {{baremo}} student. They've rarely proven otherwise to me.\"",
+      "t4": "\"Welcome! What a mess you've been handed with the encrypted records, right? I taught art to student {{studentId}}. I don't understand that {{encryptedGrade}}, but their general effort level is {{baremo}}. Good luck with the puzzle!\"",
+      "t5": "\"Shhh, keep your voice down, I'm grading. Student {{studentId}}? Yes, I know them. I don't care if it says {{encryptedGrade}} there, I'm sure their real level is {{baremo}}. Now let me finish this, please.\"",
+      "t6": "\"Wow, the previous Professor in your position had a real 'Beautiful Mind' thing going on. For student {{studentId}}, ignore that {{encryptedGrade}}. Their academic record screams '{{baremo}}' all over. Cheers.\"",
+      "t7": "\"Hello, Prof {{playerName}}! I was at the coffee machine. Do you need help with student {{studentId}}? That {{encryptedGrade}} would confuse anyone. If you ask me, I'd say they are {{baremo}}. Good luck with the rest!\"",
+      "t8": "\"You're the new one, right? I pity you, poor colleague. Is that {{encryptedGrade}} scribble from student {{studentId}}? What a headache. In physical education, their performance is {{baremo}}.\"",
+      "t9": "\"Hey, Prof! If you're going to survive here you need instinct. Forget that {{encryptedGrade}}. Student {{studentId}} is a textbook case, clearly a {{baremo}}. Trust me, I've been here for 20 years.\"",
+      "t10": "\"Nice to meet you. My goodness, are you still looking at the symbol table? Regarding student {{studentId}}, I can confirm that even if it says {{encryptedGrade}}, they always hover around a {{baremo}} scale.\"",
+      "t11": "\"How's your day going, Prof {{playerName}}? Stuck with student {{studentId}}? That {{encryptedGrade}} is Greek to me, but knowing their study habits, they are a {{baremo}}. Don't give up!\"",
+      "t12": "\"Wow, the famous encrypted grades! I tried to decipher them and gave up. Good thing you're smart. I'll tell you that student {{studentId}} is {{baremo}}, regardless of that {{encryptedGrade}}.\"",
+      "t13": "\"You look overwhelmed. Come on, sit down for a minute. Doubting student {{studentId}}? That {{encryptedGrade}} is crazy, but their real record says their attitude is {{baremo}}. Breathe, you'll figure it out.\"",
+      "t14": "\"Hey, Prof. I just got out of a meeting with student {{studentId}}'s parents. I swear that {{encryptedGrade}} doesn't reflect their reality, which is purely {{baremo}}. I'm going to the staff room to rest.\"",
+      "t15": "\"Hey, colleague! I see you staring at that {{encryptedGrade}}. Don't drive yourself crazy over student {{studentId}}. I taught them last year and they are definitely a {{baremo}}. Come on, pastries are on the house in the reception.\"",
+      "t16": "\"You're the brave one who accepted the position, right? How heroic! About student {{studentId}}, I can only tell you that {{encryptedGrade}} covers up a performance of {{baremo}}. Good luck with the decryption!\"",
+      "t17": "\"Excuse me, do you have a spare red pen? Ah, thanks. By the way, if that {{encryptedGrade}} belongs to student {{studentId}}, I can confirm they are {{baremo}}. See you at the staff meeting.\"",
+      "t18": "\"What a hieroglyph! Student {{studentId}} is not as complicated as that {{encryptedGrade}} seems. Treat them like a {{baremo}} student and you'll be spot on.\"",
+      "t19": "\"Hi, are you Prof {{playerName}}? I was told you're deciphering the grades. To save you some trouble with student {{studentId}}: forget the {{encryptedGrade}}, evaluate them as {{baremo}}. Hugs and hang in there!\""
+    }
+  }
+}
